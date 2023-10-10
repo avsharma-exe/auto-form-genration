@@ -1,0 +1,135 @@
+--------------------------------------------------------------
+Sample Link
+
+//http://localhost/connection.php?coid=0001&conm=COMPANY NAME&year=19&userid=0&server=JARVIS\SQLEXPRESS01&database=alldata&user=sallu&password=dbamvt48&menuno=5005&field_value=ayush&field_fill=&field_value=
+
+---------------------------------------------------------------
+
+
+1. web page with parameters
+
+	1. Co id  - 1
+	2. Co. name  - string
+	3. Year -2019
+	4. Server - Ip address
+	5. Database name
+	6. Userid
+	7. password
+	8. Menu code - 5001
+
+2. Form Master
+	select * from entry_mst where mnu_no =5003
+	Menu No. - 5003
+	Menu Name - Header Name for the Form
+	File Name - #fil_par  - #fil - will be replaced by z
+			z_par_0001 (0001 will be the co id)
+		    #fil_stk_#yr
+			z_stk_0001_19  ( year code)
+
+	Query   party_nm,addr,place
+
+
+3. Fields Structure
+	The fields for the query will be defined in 
+	select * from entry_mst where mnu_no =5003
+	select * from field_mst where entry_uid = 34 order by fldno
+	entry_uid of field_mst = uid of entry_mst 
+	
+---------------------------------------------------------------------------------------------
+
+field type 0 - int input
+if display type is 2 then it will accept FLOAT value
+
+
+------------------------------------------------------------------------------------------------
+	Field No. (0 onwards - the fields should appear in that sequence only)
+	field Name =- is the name of the field in the table
+	Head name - Name to displayed 
+	Field Type - 0 - Numeric fld
+		     1 - String
+		     3 - Date
+		     #4 - Auto increment
+		     6 - rating	
+	display mode 
+			1- edit 
+			#2- view
+			3. Multi line
+			4. hidden
+
+	Alignment - 0 - Left
+		    1- Right align
+		    2- Centre align	 f1
+	display as check box ( Check box where tick mark will save as -1 and 0 for unticked)
+	Display combo box (Auto complete control)
+		Combo from file name - file name  #fil_prod (z_prod_0001)
+		Combo field to display   item_nm
+		Combo field to save - 	 item_id
+		combo filter on field    sub_id
+		Combo filer value	2
+	 (select item_nm,item_Id from z_prod_0001 where sub_id = 2
+	Value Expresseion = #5&*&#6
+			
+	
+
+
+
+for ex.5003 
+	1. Co id  - 1
+	2. Co. name  - ABC CO string
+	3. Year -2019
+	4. Server - Ip address  147.113.1.1
+	5. Database name   abc
+	6. Userid    abc
+	7. password  123
+	8. Menu code - 5003
+
+connection string 
+
+	-select * from entry_mst where mnu_no = 5003
+Menu Name - (mnu_nm) menu name Party Entry
+File Name - fil_nm (field name)  #fil_par (where to store the data)
+uid = 34
+		file name = z_par_0001		
+
+
+to get the field details
+	select * from field_mst where entry_uid = 34 order by fldno
+	party_nm 
+	addr 
+	place
+
+
+An Entry form
+ABC Co. (Co name will be displayed) - Year 
+
+Menu Name from Entry Mast (Party Entry)
+
+______________________________________________
+
+Party Name  (Field name to display will be head_nm  (Head Name) 
+Address 
+place
+
+_____________________________________________
+
+0select a.*,'___2nd Table' as xcol,b.*
+from entry_mst a
+left join field_mst b on b.entry_uid = a.uid
+where mnu_no = 5017
+
+only numeric will have the drop down.
+
+#$siteid = '123'; // siteid check if there 
+		#$xuserid = 1 or 0 by default is 0 (if 1 then get the timestamp and hostname , ip address/imme code | if possible location)
+		#userid -> $xuserid entered_on ->time stamp (dd-mm-yyyy/hh:mm:ss) hostname -> hostname ipadd-> ipaddress imecode-> imecode(for mobile only) lat-> latitude long-> longitude;
+		#ole connection
+
+
+/*
+if it is update ,insert or delete - routine_flg	0 - Insert,1 - Update,2 - Delete
+	up_table 	= 'Table Name whch has been update or etc'
+	up_field	= 'Update fields'
+	up_value	= ''
+update field and update table and update value ------- >
+*/
+
